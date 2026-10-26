@@ -1,0 +1,31 @@
+services:
+  app:
+    build: .
+    env_file:
+      - path: .env
+        format: raw
+    environment:
+      CCW_DATA_DIR: /app/runtime
+      CCW_SECURE_COOKIE: '1'
+      CCW_TRUST_PROXY: '1'
+    volumes:
+      - care_data:/app/runtime
+    expose:
+      - '8000'
+    restart: unless-stopped
+  caddy:
+    image: caddy:2
+    environment:
+      SITE_DOMAIN: ${SITE_DOMAIN:?Set SITE_DOMAIN to your domain}
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+volumes:
+  care_data:
+  caddy_data:
+  caddy_config:
