@@ -1,0 +1,8 @@
+export const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n);
+export const safeURL=u=>{try{const x=new URL(u);return ['https:','http:'].includes(x.protocol)?x.href:'#';}catch{return '#';}};
+export function toast(message){const el=document.querySelector('#toast');el.textContent=message;el.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>{el.style.display='none';},5000);}
+export async function api(path,options={}){const response=await fetch(path,{credentials:'same-origin',...options,headers:{'Content-Type':'application/json',...options.headers}});const result=await response.json().catch(()=>({error:'The service returned an unexpected response.'}));if(!response.ok)throw new Error(result.error||`Request failed (${response.status})`);return result;}
+export function sourceLinks(ids,data){return ids.map(id=>data.sources.find(s=>s.id===id)).filter(Boolean).map(s=>`<a class="source-link" href="${esc(safeURL(s.url))}" target="_blank" rel="noopener noreferrer">Official source ↗</a> <small>Checked ${esc(s.retrieved_on)}</small>`).join('<br>');}
+export const statusLabels={new:'新咨询',contacted:'已联系',awaiting_materials:'等待补充资料',awaiting_hospital_confirmation:'等待医院确认',closed:'已关闭',archived:'已归档'};
+export function bindDialog(dialog){dialog.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});}
