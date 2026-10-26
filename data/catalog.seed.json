@@ -1,0 +1,896 @@
+{
+  "schema_version": 1,
+  "created_on": "2026-10-26",
+  "coverage": "Initial curated seed, not an exhaustive directory or ranking.",
+  "translations": "English names and summaries are editorial translations/transliterations unless stated otherwise.",
+  "sources": [
+    {
+      "id": "pumch",
+      "url": "https://www.pumch.cn/department_fengsmyk.html",
+      "resolved_url": "https://www.pumch.cn/department_fengsmyk.html",
+      "title": "北京协和医院",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-24",
+      "published_on": null,
+      "date_note": "URL path dates are not treated as publication/update dates.",
+      "capture_file": "research/beijing-official-captures-2026-10-24.json",
+      "response_status": 200
+    },
+    {
+      "id": "pkufh",
+      "url": "https://www.pkufh.com/Html/Departments/Main/Index_1537.html",
+      "resolved_url": "https://www.pkufh.com/Html/Departments/Main/Index_1537.html",
+      "title": "内科学（肾病）-北京大学第一医院",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-24",
+      "published_on": null,
+      "date_note": "URL path dates are not treated as publication/update dates.",
+      "capture_file": "research/beijing-official-captures-2026-10-24.json",
+      "response_status": 200
+    },
+    {
+      "id": "pku3",
+      "url": "https://www.puh3.net.cn/ydyxk",
+      "resolved_url": "https://www.puh3.net.cn/ydyxk/",
+      "title": "运动医学科",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-24",
+      "published_on": null,
+      "date_note": "URL path dates are not treated as publication/update dates.",
+      "capture_file": "research/beijing-official-captures-2026-10-24.json",
+      "response_status": 200
+    },
+    {
+      "id": "tiantan",
+      "url": "https://www.bjtth.cn/Html/News/Articles/102888.html",
+      "resolved_url": "https://www.bjtth.cn/Html/News/Articles/102888.html",
+      "title": "​首都医科大学附属北京天坛医院介绍 院所介绍 -北京天坛医院",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-24",
+      "published_on": null,
+      "date_note": "URL path dates are not treated as publication/update dates.",
+      "capture_file": "research/beijing-official-captures-2026-10-24.json",
+      "response_status": 200
+    },
+    {
+      "id": "cicams",
+      "url": "https://www.cicams.ac.cn/detail/14641.html?_isa=1",
+      "resolved_url": "https://www.cicams.ac.cn/detail/14641.html?_isa=1",
+      "title": "医院简介_中国医学科学院肿瘤医院_肿瘤医院",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-24",
+      "published_on": null,
+      "date_note": "URL path dates are not treated as publication/update dates.",
+      "capture_file": "research/beijing-official-captures-2026-10-24.json",
+      "response_status": 200
+    },
+    {
+      "id": "pumch_zhangwen",
+      "url": "https://www.pumch.cn/detail/4287.html",
+      "resolved_url": "https://www.pumch.cn/detail/4287.html",
+      "title": "张文 - 北京协和医院 - 协和医院,北京协和医院,協和醫院,北京协和医院首页,北京协和医院电话,协和,協和,医院,醫院,北京協和醫院,北京协和医院妇科,北京协和医院地址,挂号",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-26",
+      "published_on": null,
+      "date_note": "URL path dates are not treated as publication/update dates.",
+      "capture_file": "research/official-captures.json",
+      "response_status": 200
+    },
+    {
+      "id": "pumch_limengtao",
+      "url": "https://www.pumch.cn/detail/4288.html",
+      "resolved_url": "https://www.pumch.cn/detail/4288.html",
+      "title": "李梦涛 - 北京协和医院 - 协和医院,北京协和医院,協和醫院,北京协和医院首页,北京协和医院电话,协和,協和,医院,醫院,北京協和醫院,北京协和医院妇科,北京协和医院地址,挂号",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-26",
+      "published_on": null,
+      "date_note": "URL path dates are not treated as publication/update dates.",
+      "capture_file": "research/official-captures.json",
+      "response_status": 200
+    },
+    {
+      "id": "pkufh_chenmin",
+      "url": "https://www.pkufh.com/Html/Doctors/Main/Index_1595.html",
+      "resolved_url": "https://www.pkufh.com/Html/Doctors/Main/Index_1595.html",
+      "title": "陈旻-北京大学第一医院",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-26",
+      "published_on": null,
+      "date_note": "URL path dates are not treated as publication/update dates.",
+      "capture_file": "research/official-captures.json",
+      "response_status": 200
+    },
+    {
+      "id": "tj_first_jing",
+      "url": "https://www.tjfch.com.cn/system/2022/08/04/030088097.shtml",
+      "resolved_url": "https://www.tjfch.com.cn/system/2022/08/04/030088097.shtml",
+      "title": "井万里",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-26",
+      "published_on": null,
+      "date_note": "URL path dates are not treated as publication/update dates.",
+      "capture_file": "research/official-captures.json",
+      "response_status": 200
+    },
+    {
+      "id": "tj_first_wan",
+      "url": "https://www.tjfch.com.cn/system/2022/08/09/030088316.shtml",
+      "resolved_url": "https://www.tjfch.com.cn/system/2022/08/09/030088316.shtml",
+      "title": "万东东",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-26",
+      "published_on": null,
+      "date_note": "URL path dates are not treated as publication/update dates.",
+      "capture_file": "research/official-captures.json",
+      "response_status": 200
+    },
+    {
+      "id": "tj_first_dept",
+      "url": "https://www.tjfch.com.cn/ksdh/gk/ksjs/",
+      "resolved_url": "https://www.tjfch.com.cn/ksdh/gk/ksjs/",
+      "title": "科室介绍",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-26",
+      "published_on": null,
+      "date_note": "URL path dates are not treated as publication/update dates.",
+      "capture_file": "research/official-captures.json",
+      "response_status": 200
+    },
+    {
+      "id": "tj_general",
+      "url": "https://www.tjmugh.com.cn/system/2018/12/01/020006566.shtml",
+      "resolved_url": "https://www.tjmugh.com.cn/system/2018/12/01/020006566.shtml",
+      "title": "亚专业特色-天津医科大学总医院-北方网企业建站",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-26",
+      "published_on": "2018-12-01",
+      "date_note": "URL path dates are not treated as publication/update dates.",
+      "capture_file": "research/official-captures.json",
+      "response_status": 200
+    },
+    {
+      "id": "tj_eye_dept",
+      "url": "https://www.oio.cn/gywm/ksdh/index.shtml",
+      "resolved_url": "https://www.oio.cn/gywm/ksdh/index.shtml",
+      "title": "科室导航",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-26",
+      "published_on": null,
+      "date_note": "URL path dates are not treated as publication/update dates.",
+      "capture_file": "research/official-captures.json",
+      "response_status": 200
+    },
+    {
+      "id": "tj_eye_cataract",
+      "url": "https://www.oio.cn/system/2026/03/02/030095928.shtml",
+      "resolved_url": "https://www.oio.cn//ksdh/bnzzx/index.shtml",
+      "title": "白内障中心",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-26",
+      "published_on": null,
+      "date_note": "URL path dates are not treated as publication/update dates.",
+      "capture_file": "research/official-captures.json",
+      "response_status": 200
+    },
+    {
+      "id": "tj_eye_yuan",
+      "url": "https://www.oio.cn/system/2026/05/13/030099102.shtml",
+      "resolved_url": "https://www.oio.cn/system/2026/05/13/030099102.shtml",
+      "title": "苑晓勇",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-26",
+      "published_on": null,
+      "date_note": "URL path dates are not treated as publication/update dates.",
+      "capture_file": "research/official-captures.json",
+      "response_status": 200
+    },
+    {
+      "id": "tj_cancer",
+      "url": "https://www.tjmuch.com/yygk/yyjj/",
+      "resolved_url": "https://www.tjmuch.com/yygk/yyjj/",
+      "title": "医院简介",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-26",
+      "published_on": null,
+      "date_note": "URL path dates are not treated as publication/update dates.",
+      "capture_file": "research/official-captures.json",
+      "response_status": 200
+    },
+    {
+      "id": "pku3_cui",
+      "url": "https://www.puh3.net.cn/ydyxk/info/1004/1341.htm",
+      "resolved_url": "https://www.puh3.net.cn/ydyxk/info/1004/1341.htm",
+      "title": "崔国庆-运动医学科",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-26",
+      "published_on": null,
+      "date_note": "URL path dates are not treated as publication/update dates.",
+      "capture_file": "research/pku3-cui.json",
+      "response_status": 200
+    }
+  ],
+  "hospitals": [
+    {
+      "id": "pumch",
+      "name_zh": "北京协和医院",
+      "name_en": "Peking Union Medical College Hospital",
+      "english_name_type": "editorial_translation",
+      "city": "Beijing",
+      "website": "https://www.pumch.cn/",
+      "overview_zh": "官网设有风湿免疫科及专病门诊介绍。",
+      "overview_en": "Official pages describe its rheumatology department and disease-specific clinics.",
+      "specialty_keys": [
+        "rheumatology"
+      ],
+      "source_ids": [
+        "pumch"
+      ],
+      "verified_on": "2026-10-24",
+      "verification_status": "official_public_information_read",
+      "current_booking_status": "unconfirmed",
+      "international_access_status": "unconfirmed",
+      "english_service_status": "unconfirmed",
+      "partnership_status": "not_verified",
+      "treatment_price_usd": null,
+      "campus_for_visit": null
+    },
+    {
+      "id": "pkufh",
+      "name_zh": "北京大学第一医院",
+      "name_en": "Peking University First Hospital",
+      "english_name_type": "editorial_translation",
+      "city": "Beijing",
+      "website": "https://www.pkufh.com/",
+      "overview_zh": "官网肾脏内科介绍涵盖疑难重症肾脏病及慢性肾脏病。",
+      "overview_en": "Its official nephrology profile describes complex kidney disease and chronic kidney disease care.",
+      "specialty_keys": [
+        "nephrology"
+      ],
+      "source_ids": [
+        "pkufh"
+      ],
+      "verified_on": "2026-10-24",
+      "verification_status": "official_public_information_read",
+      "current_booking_status": "unconfirmed",
+      "international_access_status": "unconfirmed",
+      "english_service_status": "unconfirmed",
+      "partnership_status": "not_verified",
+      "treatment_price_usd": null,
+      "campus_for_visit": null
+    },
+    {
+      "id": "pku3",
+      "name_zh": "北京大学第三医院",
+      "name_en": "Peking University Third Hospital",
+      "english_name_type": "editorial_translation",
+      "city": "Beijing",
+      "website": "https://www.puh3.net.cn/",
+      "overview_zh": "运动医学科官网列有膝、髋、肩肘、足踝四个临床亚专科。",
+      "overview_en": "The sports medicine department lists knee, hip, shoulder/elbow and foot/ankle subspecialties.",
+      "specialty_keys": [
+        "sports_medicine"
+      ],
+      "source_ids": [
+        "pku3"
+      ],
+      "verified_on": "2026-10-24",
+      "verification_status": "official_public_information_read",
+      "current_booking_status": "unconfirmed",
+      "international_access_status": "unconfirmed",
+      "english_service_status": "unconfirmed",
+      "partnership_status": "not_verified",
+      "treatment_price_usd": null,
+      "campus_for_visit": null
+    },
+    {
+      "id": "tiantan",
+      "name_zh": "首都医科大学附属北京天坛医院",
+      "name_en": "Beijing Tiantan Hospital, Capital Medical University",
+      "english_name_type": "editorial_translation",
+      "city": "Beijing",
+      "website": "https://www.bjtth.cn/",
+      "overview_zh": "官网介绍其临床神经科学及神经外科、神经病学相关学科。",
+      "overview_en": "The institutional profile describes clinical neurosciences, including neurosurgery and neurology.",
+      "specialty_keys": [
+        "neurosurgery"
+      ],
+      "source_ids": [
+        "tiantan"
+      ],
+      "verified_on": "2026-10-24",
+      "verification_status": "official_public_information_read",
+      "current_booking_status": "unconfirmed",
+      "international_access_status": "unconfirmed",
+      "english_service_status": "unconfirmed",
+      "partnership_status": "not_verified",
+      "treatment_price_usd": null,
+      "campus_for_visit": null
+    },
+    {
+      "id": "cicams",
+      "name_zh": "中国医学科学院肿瘤医院",
+      "name_en": "Cancer Hospital, Chinese Academy of Medical Sciences",
+      "english_name_type": "editorial_translation",
+      "city": "Beijing",
+      "website": "https://www.cicams.ac.cn/",
+      "overview_zh": "官网介绍其为肿瘤专科医院，开展手术、化疗、放疗等多学科综合诊疗。",
+      "overview_en": "Its official introduction describes an oncology hospital providing multidisciplinary cancer care.",
+      "specialty_keys": [
+        "oncology"
+      ],
+      "source_ids": [
+        "cicams"
+      ],
+      "verified_on": "2026-10-24",
+      "verification_status": "official_public_information_read",
+      "current_booking_status": "unconfirmed",
+      "international_access_status": "unconfirmed",
+      "english_service_status": "unconfirmed",
+      "partnership_status": "not_verified",
+      "treatment_price_usd": null,
+      "campus_for_visit": null
+    },
+    {
+      "id": "tj_general",
+      "name_zh": "天津医科大学总医院",
+      "name_en": "Tianjin Medical University General Hospital",
+      "english_name_type": "editorial_translation",
+      "city": "Tianjin",
+      "website": "https://www.tjmugh.com.cn/",
+      "overview_zh": "已收录官网内分泌代谢科历史介绍，需更新核实。",
+      "overview_en": "A historical official endocrinology profile is retained for verification; current details need rechecking.",
+      "specialty_keys": [
+        "endocrinology"
+      ],
+      "source_ids": [
+        "tj_general"
+      ],
+      "verified_on": "2026-10-26",
+      "verification_status": "historical_needs_update",
+      "current_booking_status": "unconfirmed",
+      "international_access_status": "unconfirmed",
+      "english_service_status": "unconfirmed",
+      "partnership_status": "not_verified",
+      "treatment_price_usd": null,
+      "campus_for_visit": null
+    },
+    {
+      "id": "tj_cancer",
+      "name_zh": "天津医科大学肿瘤医院（天津市肿瘤医院）",
+      "name_en": "Tianjin Medical University Cancer Institute and Hospital",
+      "english_name_type": "editorial_translation",
+      "city": "Tianjin",
+      "website": "https://www.tjmuch.com/",
+      "overview_zh": "官网介绍为三级甲等肿瘤专科医院。",
+      "overview_en": "The official introduction identifies it as a tertiary oncology specialty hospital.",
+      "specialty_keys": [
+        "oncology"
+      ],
+      "source_ids": [
+        "tj_cancer"
+      ],
+      "verified_on": "2026-10-26",
+      "verification_status": "official_public_information_read",
+      "current_booking_status": "unconfirmed",
+      "international_access_status": "unconfirmed",
+      "english_service_status": "unconfirmed",
+      "partnership_status": "not_verified",
+      "treatment_price_usd": null,
+      "campus_for_visit": null
+    },
+    {
+      "id": "tj_first",
+      "name_zh": "天津市第一中心医院",
+      "name_en": "Tianjin First Central Hospital",
+      "english_name_type": "editorial_translation",
+      "city": "Tianjin",
+      "website": "https://www.tjfch.com.cn/",
+      "overview_zh": "官网骨科介绍包括脊柱、关节、运动医学、手足等方向。",
+      "overview_en": "Its orthopedics profile describes spine, joint, sports medicine and hand/foot services.",
+      "specialty_keys": [
+        "orthopedics"
+      ],
+      "source_ids": [
+        "tj_first_dept",
+        "tj_first_jing",
+        "tj_first_wan"
+      ],
+      "verified_on": "2026-10-26",
+      "verification_status": "official_public_information_read",
+      "current_booking_status": "unconfirmed",
+      "international_access_status": "unconfirmed",
+      "english_service_status": "unconfirmed",
+      "partnership_status": "not_verified",
+      "treatment_price_usd": null,
+      "campus_for_visit": null
+    },
+    {
+      "id": "tj_eye",
+      "name_zh": "天津市眼科医院",
+      "name_en": "Tianjin Eye Hospital",
+      "english_name_type": "editorial_translation",
+      "city": "Tianjin",
+      "website": "https://www.oio.cn/",
+      "overview_zh": "官网科室导航列有白内障、青光眼、玻璃体视网膜病等科室。",
+      "overview_en": "The official directory lists cataract, glaucoma and vitreoretinal services, among other departments.",
+      "specialty_keys": [
+        "ophthalmology"
+      ],
+      "source_ids": [
+        "tj_eye_dept",
+        "tj_eye_cataract"
+      ],
+      "verified_on": "2026-10-26",
+      "verification_status": "official_public_information_read",
+      "current_booking_status": "unconfirmed",
+      "international_access_status": "unconfirmed",
+      "english_service_status": "unconfirmed",
+      "partnership_status": "not_verified",
+      "treatment_price_usd": null,
+      "campus_for_visit": null
+    }
+  ],
+  "departments": [
+    {
+      "id": "pumch_rheum",
+      "hospital_id": "pumch",
+      "name_zh": "风湿免疫科",
+      "name_en": "Rheumatology",
+      "specialty_key": "rheumatology",
+      "scope_zh": "风湿免疫病；官网另列多个专病门诊。",
+      "scope_en": "Rheumatic and autoimmune conditions; official pages also list disease-specific clinics.",
+      "source_ids": [
+        "pumch"
+      ],
+      "verified_on": "2026-10-24",
+      "match_eligible": true,
+      "review_note": null,
+      "verification_status": "official_scope_read"
+    },
+    {
+      "id": "pkufh_neph",
+      "hospital_id": "pkufh",
+      "name_zh": "肾脏内科",
+      "name_en": "Nephrology",
+      "specialty_key": "nephrology",
+      "scope_zh": "疑难重症肾脏病及慢性肾脏病进展防治。",
+      "scope_en": "Complex kidney conditions and prevention of chronic kidney disease progression.",
+      "source_ids": [
+        "pkufh"
+      ],
+      "verified_on": "2026-10-24",
+      "match_eligible": true,
+      "review_note": null,
+      "verification_status": "official_scope_read"
+    },
+    {
+      "id": "pku3_sports",
+      "hospital_id": "pku3",
+      "name_zh": "运动医学科",
+      "name_en": "Sports Medicine",
+      "specialty_key": "sports_medicine",
+      "scope_zh": "运动创伤与康复；膝、髋、肩肘、足踝临床亚专科。",
+      "scope_en": "Sports injuries and rehabilitation; knee, hip, shoulder/elbow and foot/ankle subspecialties.",
+      "source_ids": [
+        "pku3"
+      ],
+      "verified_on": "2026-10-24",
+      "match_eligible": true,
+      "review_note": null,
+      "verification_status": "official_scope_read"
+    },
+    {
+      "id": "tiantan_neuro",
+      "hospital_id": "tiantan",
+      "name_zh": "神经外科",
+      "name_en": "Neurosurgery",
+      "specialty_key": "neurosurgery",
+      "scope_zh": "医院介绍确认该学科，具体疾病方向需按对应亚专科进一步核实。",
+      "scope_en": "The institutional profile confirms this discipline; specific conditions require subspecialty verification.",
+      "source_ids": [
+        "tiantan"
+      ],
+      "verified_on": "2026-10-24",
+      "match_eligible": true,
+      "review_note": "Scope limited to institution-level evidence. No symptom-to-neurosurgery inference.",
+      "verification_status": "official_scope_read"
+    },
+    {
+      "id": "tj_general_endo",
+      "hospital_id": "tj_general",
+      "name_zh": "内分泌代谢科",
+      "name_en": "Endocrinology and Metabolism",
+      "specialty_key": "endocrinology",
+      "scope_zh": "2018年介绍列有垂体肾上腺、甲状腺、糖尿病等亚专业。",
+      "scope_en": "The 2018 profile lists pituitary/adrenal, thyroid and diabetes subspecialties.",
+      "source_ids": [
+        "tj_general"
+      ],
+      "verified_on": "2026-10-26",
+      "match_eligible": false,
+      "review_note": "Historical page dated 2018-12-01. Excluded from automatic candidates pending update.",
+      "verification_status": "historical_needs_update"
+    },
+    {
+      "id": "tj_first_ortho",
+      "hospital_id": "tj_first",
+      "name_zh": "骨科",
+      "name_en": "Orthopedics",
+      "specialty_key": "orthopedics",
+      "scope_zh": "脊柱、关节、运动医学、手足等方向；官网介绍含历史搬迁措辞。",
+      "scope_en": "Spine, joint, sports medicine and hand/foot directions. The overview retains historical relocation wording.",
+      "source_ids": [
+        "tj_first_dept"
+      ],
+      "verified_on": "2026-10-26",
+      "match_eligible": true,
+      "review_note": "Do not reuse bed counts, leadership or relocation statements as current facts.",
+      "verification_status": "official_scope_read"
+    },
+    {
+      "id": "tj_eye_cataract",
+      "hospital_id": "tj_eye",
+      "name_zh": "白内障中心",
+      "name_en": "Cataract Center",
+      "specialty_key": "ophthalmology",
+      "scope_zh": "白内障诊疗；具体手术方式和适用性由医生评估。",
+      "scope_en": "Cataract care; procedure selection and eligibility require a physician assessment.",
+      "source_ids": [
+        "tj_eye_cataract"
+      ],
+      "verified_on": "2026-10-26",
+      "match_eligible": true,
+      "review_note": null,
+      "verification_status": "official_scope_read"
+    }
+  ],
+  "experts": [
+    {
+      "id": "zhang_wen",
+      "department_id": "pumch_rheum",
+      "name_zh": "张文",
+      "name_en": "Zhang Wen",
+      "english_name_type": "editorial_transliteration",
+      "title_as_listed": "主任医师",
+      "scope_zh": "IgG4相关性疾病、系统性红斑狼疮、干燥综合征、类风湿关节炎、系统性血管炎、痛风等。",
+      "scope_en": "Official scope includes IgG4-related disease, lupus, Sjögren syndrome, rheumatoid arthritis, systemic vasculitis and gout.",
+      "topic_keys": [
+        "igg4",
+        "sle",
+        "sjogren",
+        "ra",
+        "vasculitis",
+        "gout"
+      ],
+      "source_ids": [
+        "pumch_zhangwen"
+      ],
+      "verified_on": "2026-10-26",
+      "verification_status": "official_clinical_profile_read",
+      "current_affiliation_confirmed": false,
+      "appointment_status": "unconfirmed",
+      "english_consultation_status": "unconfirmed",
+      "consultation_price_usd": null,
+      "note": "Public profile only. Current practice, appointment and service arrangements require hospital confirmation."
+    },
+    {
+      "id": "li_mengtao",
+      "department_id": "pumch_rheum",
+      "name_zh": "李梦涛",
+      "name_en": "Li Mengtao",
+      "english_name_type": "editorial_transliteration",
+      "title_as_listed": "主任医师",
+      "scope_zh": "系统性红斑狼疮、干燥综合征、类风湿关节炎、系统性硬化症、皮肌炎及结缔组织病相关肺动脉高压等。",
+      "scope_en": "Official scope includes lupus, Sjögren syndrome, rheumatoid arthritis, systemic sclerosis, dermatomyositis and connective tissue disease-related pulmonary hypertension.",
+      "topic_keys": [
+        "sle",
+        "sjogren",
+        "ra",
+        "scleroderma",
+        "dermatomyositis",
+        "ctd_pah",
+        "vasculitis"
+      ],
+      "source_ids": [
+        "pumch_limengtao"
+      ],
+      "verified_on": "2026-10-26",
+      "verification_status": "official_clinical_profile_read",
+      "current_affiliation_confirmed": false,
+      "appointment_status": "unconfirmed",
+      "english_consultation_status": "unconfirmed",
+      "consultation_price_usd": null,
+      "note": "Public profile only. Current practice, appointment and service arrangements require hospital confirmation."
+    },
+    {
+      "id": "cui_guoqing",
+      "department_id": "pku3_sports",
+      "name_zh": "崔国庆",
+      "name_en": "Cui Guoqing",
+      "english_name_type": "editorial_transliteration",
+      "title_as_listed": "主任医师、教授",
+      "scope_zh": "肩肘膝运动损伤，包括肩袖撕裂、肩关节脱位、肘关节运动损伤、前后十字韧带损伤等。",
+      "scope_en": "Official scope includes shoulder, elbow and knee sports injuries, rotator cuff tears, shoulder dislocation and cruciate ligament injuries.",
+      "topic_keys": [
+        "rotator_cuff",
+        "shoulder_dislocation",
+        "acl",
+        "pcl"
+      ],
+      "source_ids": [
+        "pku3_cui"
+      ],
+      "verified_on": "2026-10-26",
+      "verification_status": "official_clinical_profile_read",
+      "current_affiliation_confirmed": false,
+      "appointment_status": "unconfirmed",
+      "english_consultation_status": "unconfirmed",
+      "consultation_price_usd": null,
+      "note": "Public profile only. Current practice, appointment and service arrangements require hospital confirmation."
+    },
+    {
+      "id": "jing_wanli",
+      "department_id": "tj_first_ortho",
+      "name_zh": "井万里",
+      "name_en": "Jing Wanli",
+      "english_name_type": "editorial_transliteration",
+      "title_as_listed": "主任医师",
+      "scope_zh": "腰椎管狭窄、腰椎间盘突出、颈椎病、颈腰椎骨折、脊髓损伤等脊柱外科方向。",
+      "scope_en": "Official scope lists lumbar stenosis, lumbar disc herniation, cervical spondylosis, spinal fractures and spinal cord injury.",
+      "topic_keys": [
+        "lumbar_stenosis",
+        "lumbar_disc",
+        "cervical_spondylosis"
+      ],
+      "source_ids": [
+        "tj_first_jing"
+      ],
+      "verified_on": "2026-10-26",
+      "verification_status": "official_clinical_profile_read",
+      "current_affiliation_confirmed": false,
+      "appointment_status": "unconfirmed",
+      "english_consultation_status": "unconfirmed",
+      "consultation_price_usd": null,
+      "note": "Public profile only. Current practice, appointment and service arrangements require hospital confirmation."
+    },
+    {
+      "id": "wan_dongdong",
+      "department_id": "tj_first_ortho",
+      "name_zh": "万东东",
+      "name_en": "Wan Dongdong",
+      "english_name_type": "editorial_transliteration",
+      "title_as_listed": "副主任医师",
+      "scope_zh": "足踝疾病与创伤、足踝畸形、拇外翻、踝关节韧带损伤等。",
+      "scope_en": "Official scope includes foot and ankle disorders and trauma, deformity, hallux valgus and ankle ligament injuries.",
+      "topic_keys": [
+        "hallux_valgus",
+        "ankle_ligament"
+      ],
+      "source_ids": [
+        "tj_first_wan"
+      ],
+      "verified_on": "2026-10-26",
+      "verification_status": "official_clinical_profile_read",
+      "current_affiliation_confirmed": false,
+      "appointment_status": "unconfirmed",
+      "english_consultation_status": "unconfirmed",
+      "consultation_price_usd": null,
+      "note": "Public profile only. Current practice, appointment and service arrangements require hospital confirmation."
+    },
+    {
+      "id": "yuan_xiaoyong",
+      "department_id": "tj_eye_cataract",
+      "name_zh": "苑晓勇",
+      "name_en": "Yuan Xiaoyong",
+      "english_name_type": "editorial_transliteration",
+      "title_as_listed": "主任医师",
+      "scope_zh": "白内障手术，含多种伴发眼病的复杂白内障及人工晶状体应用。",
+      "scope_en": "The official profile describes cataract surgery, complex cataracts with coexisting eye conditions and intraocular lens applications.",
+      "topic_keys": [
+        "cataract"
+      ],
+      "source_ids": [
+        "tj_eye_yuan"
+      ],
+      "verified_on": "2026-10-26",
+      "verification_status": "official_clinical_profile_read",
+      "current_affiliation_confirmed": false,
+      "appointment_status": "unconfirmed",
+      "english_consultation_status": "unconfirmed",
+      "consultation_price_usd": null,
+      "note": "Public profile only. Current practice, appointment and service arrangements require hospital confirmation."
+    }
+  ],
+  "specialties": {
+    "rheumatology": "Rheumatology",
+    "nephrology": "Nephrology",
+    "sports_medicine": "Sports Medicine",
+    "neurosurgery": "Neurosurgery",
+    "oncology": "Oncology",
+    "endocrinology": "Endocrinology",
+    "orthopedics": "Orthopedics",
+    "ophthalmology": "Ophthalmology"
+  },
+  "topics": [
+    {
+      "id": "igg4",
+      "label_en": "IgG4-related disease",
+      "specialty_key": "rheumatology",
+      "evidence_expert_ids": [
+        "zhang_wen"
+      ]
+    },
+    {
+      "id": "sle",
+      "label_en": "Systemic lupus erythematosus",
+      "specialty_key": "rheumatology",
+      "evidence_expert_ids": [
+        "zhang_wen",
+        "li_mengtao"
+      ]
+    },
+    {
+      "id": "sjogren",
+      "label_en": "Sjögren syndrome",
+      "specialty_key": "rheumatology",
+      "evidence_expert_ids": [
+        "zhang_wen",
+        "li_mengtao"
+      ]
+    },
+    {
+      "id": "ra",
+      "label_en": "Rheumatoid arthritis",
+      "specialty_key": "rheumatology",
+      "evidence_expert_ids": [
+        "zhang_wen",
+        "li_mengtao"
+      ]
+    },
+    {
+      "id": "vasculitis",
+      "label_en": "Systemic vasculitis",
+      "specialty_key": "rheumatology",
+      "evidence_expert_ids": [
+        "zhang_wen",
+        "li_mengtao"
+      ]
+    },
+    {
+      "id": "gout",
+      "label_en": "Gout",
+      "specialty_key": "rheumatology",
+      "evidence_expert_ids": [
+        "zhang_wen"
+      ]
+    },
+    {
+      "id": "scleroderma",
+      "label_en": "Systemic sclerosis",
+      "specialty_key": "rheumatology",
+      "evidence_expert_ids": [
+        "li_mengtao"
+      ]
+    },
+    {
+      "id": "dermatomyositis",
+      "label_en": "Dermatomyositis",
+      "specialty_key": "rheumatology",
+      "evidence_expert_ids": [
+        "li_mengtao"
+      ]
+    },
+    {
+      "id": "ctd_pah",
+      "label_en": "Connective tissue disease-related pulmonary hypertension",
+      "specialty_key": "rheumatology",
+      "evidence_expert_ids": [
+        "li_mengtao"
+      ]
+    },
+    {
+      "id": "rotator_cuff",
+      "label_en": "Rotator cuff tear",
+      "specialty_key": "sports_medicine",
+      "evidence_expert_ids": [
+        "cui_guoqing"
+      ]
+    },
+    {
+      "id": "shoulder_dislocation",
+      "label_en": "Shoulder dislocation",
+      "specialty_key": "sports_medicine",
+      "evidence_expert_ids": [
+        "cui_guoqing"
+      ]
+    },
+    {
+      "id": "acl",
+      "label_en": "Anterior cruciate ligament injury",
+      "specialty_key": "sports_medicine",
+      "evidence_expert_ids": [
+        "cui_guoqing"
+      ]
+    },
+    {
+      "id": "pcl",
+      "label_en": "Posterior cruciate ligament injury",
+      "specialty_key": "sports_medicine",
+      "evidence_expert_ids": [
+        "cui_guoqing"
+      ]
+    },
+    {
+      "id": "lumbar_stenosis",
+      "label_en": "Lumbar spinal stenosis",
+      "specialty_key": "orthopedics",
+      "evidence_expert_ids": [
+        "jing_wanli"
+      ]
+    },
+    {
+      "id": "lumbar_disc",
+      "label_en": "Lumbar disc herniation",
+      "specialty_key": "orthopedics",
+      "evidence_expert_ids": [
+        "jing_wanli"
+      ]
+    },
+    {
+      "id": "cervical_spondylosis",
+      "label_en": "Cervical spondylosis",
+      "specialty_key": "orthopedics",
+      "evidence_expert_ids": [
+        "jing_wanli"
+      ]
+    },
+    {
+      "id": "hallux_valgus",
+      "label_en": "Hallux valgus",
+      "specialty_key": "orthopedics",
+      "evidence_expert_ids": [
+        "wan_dongdong"
+      ]
+    },
+    {
+      "id": "ankle_ligament",
+      "label_en": "Ankle ligament injury",
+      "specialty_key": "orthopedics",
+      "evidence_expert_ids": [
+        "wan_dongdong"
+      ]
+    },
+    {
+      "id": "cataract",
+      "label_en": "Cataract",
+      "specialty_key": "ophthalmology",
+      "evidence_expert_ids": [
+        "yuan_xiaoyong"
+      ]
+    }
+  ],
+  "service_config": {
+    "currency": "USD",
+    "service_fee": 10000,
+    "price_type": "service_fee_only",
+    "medical_cost_included": false,
+    "travel_cost_included": false,
+    "medical_estimate": null,
+    "travel_estimate": null,
+    "total_estimate": null,
+    "contact_email": "leexm220@gmail.com",
+    "service_scope_status": "owner_to_confirm",
+    "online_payment_enabled": false
+  },
+  "matching_policy": {
+    "mode": "directory_retrieval_not_diagnosis",
+    "max_hospitals": 3,
+    "allowed_routing_basis": [
+      "prior_diagnosis",
+      "clinician_recommended_specialty"
+    ],
+    "symptom_only_action": "manual_review",
+    "historical_entries_excluded": true,
+    "require_human_confirmation_before_service": true
+  }
+}
