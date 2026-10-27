@@ -10,3 +10,6 @@
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
 
 main[tabindex="-1"]:focus{outline:none}.form-layout>*{min-width:0}.source-row a:focus-visible{outline-offset:3px}
+
+/* A compact wordmark with a localized service descriptor. */
+.site-header .brand{font-size:16px;letter-spacing:-.02em;gap:10px;flex-shrink:0}.brand-sub{font-size:9px;font-weight:450;letter-spacing:.035em;line-height:1.4;text-transform:none;margin-top:5px}.footer-brand{font-size:15px}.sidebar .brand small{color:#d0e0d5;font-size:11px;font-weight:400}

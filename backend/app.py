@@ -76,8 +76,13 @@ def create_app(overrides=None):
         db().execute('INSERT OR IGNORE INTO catalog VALUES(1,1,?)',(json.dumps(seed),))
         settings=dict(service_scope='Service scope, delivery period and accompaniment days will be agreed in writing before payment.',
             cancellation_policy='Cancellation and refund terms will be provided in the individual service agreement before payment.',
-            operator_name='China Care Wayfinder',retention_days=90,intake_enabled=app.config['INTAKE_ENABLED'])
+            operator_name='Avenlio Care',retention_days=90,intake_enabled=app.config['INTAKE_ENABLED'])
         db().execute('INSERT OR IGNORE INTO settings VALUES(1,?)',(json.dumps(settings),))
+        # Migrate the previous stock brand without replacing an operator's customized identity.
+        stored_settings=json.loads(db().execute('SELECT body FROM settings WHERE id=1').fetchone()[0])
+        if stored_settings.get('operator_name')=='China Care Wayfinder':
+            stored_settings['operator_name']='Avenlio Care'
+            db().execute('UPDATE settings SET body=? WHERE id=1',(json.dumps(stored_settings),))
         db().execute('INSERT OR IGNORE INTO credentials VALUES(1,?)',(app.config['ADMIN_HASH'],));db().commit()
     dbpath.chmod(0o600)
 

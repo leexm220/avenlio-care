@@ -10,6 +10,8 @@ for(const locale of Object.keys(languages)) {
   assert.deepEqual(Object.keys(messages[locale]).sort(),keys,locale+' has all UI keys');
   for(const key of keys){assert.ok(messages[locale][key].trim(),locale+':'+key);assert.deepEqual(slots(messages[locale][key]),slots(messages.en[key]),locale+':'+key+' placeholders');}
   setLanguage(locale);
+  assert.equal(t('brandName'),locale==='zh'?'安诺医伴':'Avenlio Care',locale+' uses the current brand');
+  assert.ok(!/China|Beijing|Tianjin|Wayfinder/i.test(t('brandName')+' '+t('brandDescriptor')),locale+' brand has no regional wording');
   for(const group of ['hospitals','departments','experts'])for(const record of data[group])assert.equal(recordCopy(record).fallback,false,locale+':'+record.id);
   for(const topic of data.topics)assert.notEqual(topicName(topic),topic.id);
   assert.equal(filterHospitals(data,{query:locale==='zh'?'眼科':specialtyName('ophthalmology',data)})[0].id,'tj_eye');
