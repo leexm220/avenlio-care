@@ -2,6 +2,9 @@
 export const languages={zh:'中文',en:'English',fr:'Français',ja:'日本語',ko:'한국어',hi:'हिन्दी',th:'ไทย',id:'Bahasa Indonesia'};
 const locales=['en','zh','fr','ja','ko','hi','th','id'];
 const rows=`
+brandName|Avenlio Care|安诺医伴|Avenlio Care|Avenlio Care|Avenlio Care|Avenlio Care|Avenlio Care|Avenlio Care
+brandDescriptor|Patient Coordination|就医协调|Coordination des soins|受診サポート|진료 지원|रोगी समन्वय|ประสานงานผู้ป่วย|Koordinasi pasien
+brandLegalName|Avenlio Care|Avenlio Care（安诺医伴）|Avenlio Care|Avenlio Care|Avenlio Care|Avenlio Care|Avenlio Care|Avenlio Care
 language|Language|语言|Langue|言語|언어|भाषा|ภาษา|Bahasa
 skip|Skip to content|跳到主要内容|Aller au contenu|本文へ移動|본문으로 이동|मुख्य सामग्री पर जाएँ|ข้ามไปยังเนื้อหา|Lewati ke konten
 navHospitals|Find hospitals|查询医院|Trouver un hôpital|病院を探す|병원 찾기|अस्पताल खोजें|ค้นหาโรงพยาบาล|Cari rumah sakit
