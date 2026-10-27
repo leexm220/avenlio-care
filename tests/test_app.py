@@ -60,6 +60,22 @@ def test_atomic_settings_and_catalog_save(env):
     assert c.get('/api/catalog').json['service_config']['service_fee']==11000
     assert c.get('/api/admin/settings').json['operator_name']=='Synthetic new operator'
 
+def test_brand_migration_preserves_custom_operator_and_updates_consent(env):
+    app,c,p=env
+    with sqlite3.connect(p/'care.sqlite3') as db:
+        settings=json.loads(db.execute('SELECT body FROM settings WHERE id=1').fetchone()[0])
+        settings['operator_name']='China Care Wayfinder'
+        db.execute('UPDATE settings SET body=? WHERE id=1',(json.dumps(settings),))
+    old_consent=c.get('/api/health').json['consent_version']
+    config={key:app.config[key] for key in ['TESTING','DATA_DIR','DATA_KEY','ADMIN_HASH','ADMIN_EMAIL','TRUSTED_HOSTS']}
+    renamed=create_app(config).test_client()
+    assert renamed.get('/api/catalog').json['site_settings']['operator_name']=='Avenlio Care'
+    assert renamed.get('/api/health').json['consent_version']!=old_consent
+    with sqlite3.connect(p/'care.sqlite3') as db:
+        settings['operator_name']='Synthetic custom operator'
+        db.execute('UPDATE settings SET body=? WHERE id=1',(json.dumps(settings),))
+    assert create_app(config).test_client().get('/api/catalog').json['site_settings']['operator_name']=='Synthetic custom operator'
+
 def test_public_surface_and_security_headers(env):
     _,c,_=env
     assert c.get('/').status_code==200
