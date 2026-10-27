@@ -20,6 +20,46 @@ def inquiry(c):
         progress='Synthetic test only',tests_opinions='Synthetic test findings',needs=['accompaniment'],city='Tianjin',
         routing_basis='prior_diagnosis',topic_keys=['cataract'],consent_health=True,adult_or_guardian=True,consent_version=c.get("/api/health").json["consent_version"])
 
+def test_language_and_duplicate_submission_receipt(env):
+    _,c,p=env
+    payload=inquiry(c);payload.update(preferred_language='fr',request_id='synthetic-request-id-2026-unique')
+    first=c.post('/api/inquiries',json=payload)
+    assert first.status_code==201
+    assert c.post('/api/inquiries',json=payload).json['id']==first.json['id']
+    payload['preferred_language']='ja'
+    assert c.post('/api/inquiries',json=payload).json['id']==first.json['id']
+    payload['symptoms']='Different synthetic information'
+    assert c.post('/api/inquiries',json=payload).status_code==409
+    login(c)
+    items=c.get('/api/admin/inquiries').json['items']
+    assert len(items)==1 and items[0]['body']['preferred_language']=='fr'
+    with sqlite3.connect(p/'care.sqlite3') as db:
+        assert 'qa@example.test' not in str(db.execute('SELECT * FROM inquiry_requests').fetchall())
+
+def test_all_language_codes_and_invalid_language(env):
+    from backend.app import LANGUAGES
+    assert set(LANGUAGES)=={'zh','en','fr','ja','ko','hi','th','id'}
+    _,c,_=env
+    payload=inquiry(c);payload['preferred_language']='unrecognized'
+    assert c.post('/api/inquiries',json=payload).status_code==400
+    payload['preferred_language']='hi';payload['request_id']='short'
+    assert c.post('/api/inquiries',json=payload).status_code==400
+
+def test_atomic_settings_and_catalog_save(env):
+    _,c,_=env;headers=login(c)
+    original=c.get('/api/admin/settings').json
+    directory=c.get('/api/admin/catalog').json
+    settings={**original,'operator_name':'Synthetic new operator','catalog':copy.deepcopy(directory['catalog']),'catalog_version':directory['version']-1}
+    settings['catalog']['service_config']['service_fee']=11000
+    assert c.put('/api/admin/settings',json=settings,headers=headers).status_code==409
+    assert c.get('/api/admin/settings').json['operator_name']==original['operator_name']
+    assert c.get('/api/catalog').json['service_config']['service_fee']==10000
+    settings['catalog_version']=directory['version']
+    saved=c.put('/api/admin/settings',json=settings,headers=headers)
+    assert saved.status_code==200 and saved.json['version']==directory['version']+1
+    assert c.get('/api/catalog').json['service_config']['service_fee']==11000
+    assert c.get('/api/admin/settings').json['operator_name']=='Synthetic new operator'
+
 def test_public_surface_and_security_headers(env):
     _,c,_=env
     assert c.get('/').status_code==200
@@ -111,12 +151,15 @@ def test_login_throttling(env):
 
 def test_retention_clears_expired_records_and_archiving_preserves_active(env):
     _,c,p=env
-    ident=c.post('/api/inquiries',json=inquiry(c)).json['id'];h=login(c)
+    payload=inquiry(c);payload['request_id']='synthetic-retention-key-2026'
+    ident=c.post('/api/inquiries',json=payload).json['id'];h=login(c)
     row=c.get('/api/admin/inquiries').json['items'][0]
     assert c.patch('/api/admin/inquiries/'+ident,json=dict(status='archived',assigned_to='',notes='',version=row['version']),headers=h).status_code==200
     assert c.get('/api/admin/inquiries').json['items'][0]['status']=='archived'
     with sqlite3.connect(p/'care.sqlite3') as con:con.execute('UPDATE leads SET created=?',(time.time()-91*86400,))
     assert c.get('/api/admin/inquiries').json['items']==[]
+    with sqlite3.connect(p/'care.sqlite3') as con:
+        assert con.execute('SELECT count(*) FROM inquiry_requests').fetchone()[0]==0
 
 def test_privacy_change_requires_current_consent(env):
     _,c,_=env;d=inquiry(c);h=login(c)

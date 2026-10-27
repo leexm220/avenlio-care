@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "check": "node --check web/assets/app.js && node --check web/assets/admin.js && node --check web/assets/catalog-engine.js && node --check web/assets/taxonomy.js && node --check web/assets/shared.js",
-    "test:matching": "node tests/matching.test.js"
+    "check": "node --check web/assets/app.js && node --check web/assets/admin.js && node --check web/assets/catalog-engine.js && node --check web/assets/taxonomy.js && node --check web/assets/shared.js && node --check web/assets/i18n.js && node --check web/assets/translations.js && node --check web/assets/content-i18n.js && node --check web/assets/localized-catalog.js",
+    "test:matching": "node tests/matching.test.js && node tests/i18n.test.js"
   }
 }

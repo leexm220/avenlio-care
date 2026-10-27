@@ -7,6 +7,7 @@ ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 from backend.app import load_env
 load_env();runtime=Path(os.environ.get('CCW_DATA_DIR',str(ROOT/'runtime')))
 with sqlite3.connect(runtime/'care.sqlite3') as con:
+    con.execute('PRAGMA foreign_keys=ON')
     settings=json.loads(con.execute('SELECT body FROM settings WHERE id=1').fetchone()[0])
     cutoff=time.time()-settings['retention_days']*86400
     count=con.execute('DELETE FROM leads WHERE created<?',(cutoff,)).rowcount

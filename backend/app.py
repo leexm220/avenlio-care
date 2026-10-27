@@ -21,6 +21,7 @@ from .catalog import public_catalog,validate_catalog,match_candidates
 ROOT=Path(__file__).resolve().parents[1]
 STATUSES=('new','contacted','awaiting_materials','awaiting_hospital_confirmation','closed','archived')
 CONSENT_VERSION='2026-10-26-v1'
+LANGUAGES=('zh','en','fr','ja','ko','hi','th','id')
 
 
 def load_env():
@@ -67,6 +68,7 @@ def create_app(overrides=None):
         CREATE TABLE IF NOT EXISTS audits(id INTEGER PRIMARY KEY,created REAL NOT NULL,action TEXT NOT NULL,target TEXT NOT NULL);
         CREATE TABLE IF NOT EXISTS rate_limits(key TEXT PRIMARY KEY,started REAL NOT NULL,n INTEGER NOT NULL);
         CREATE TABLE IF NOT EXISTS credentials(id INTEGER PRIMARY KEY CHECK(id=1),password_hash TEXT NOT NULL);
+        CREATE TABLE IF NOT EXISTS inquiry_requests(request_key TEXT PRIMARY KEY,lead_id TEXT NOT NULL REFERENCES leads(id) ON DELETE CASCADE,body_hash TEXT NOT NULL);
         ''')
         seed=json.loads((ROOT/'data/catalog.seed.json').read_text())
         for group in ('hospitals','departments','experts'):
@@ -159,6 +161,21 @@ def create_app(overrides=None):
         if not settings()['intake_enabled']:abort(503,description='Online inquiries are currently paused.')
         d=body()
         if d.get('website'):abort(400,description='Unable to process request')
+        language=d.get('preferred_language','en')
+        if language not in LANGUAGES:raise ValueError('Invalid preferred language')
+        request_key=d.get('request_id')
+        if request_key is not None and (not isinstance(request_key,str) or not re.fullmatch(r'[a-zA-Z0-9_-]{20,80}',request_key)):
+            raise ValueError('Invalid request ID')
+        # A retry after a lost response returns the original receipt without creating a second case.
+        # HMAC prevents low-entropy medical fields being exposed through a plain content hash.
+        fingerprint={k:v for k,v in d.items() if k not in ('request_id','preferred_language','consent_version')}
+        secret=app.config['DATA_KEY'].encode() if isinstance(app.config['DATA_KEY'],str) else app.config['DATA_KEY']
+        body_hash=hmac.new(secret,json.dumps(fingerprint,sort_keys=True).encode(),hashlib.sha256).hexdigest()
+        if request_key:
+            prior=db().execute('SELECT lead_id,body_hash FROM inquiry_requests WHERE request_key=?',(request_key,)).fetchone()
+            if prior:
+                if not secrets.compare_digest(prior['body_hash'],body_hash):abort(409,description='Request ID was already used for different information')
+                return jsonify(id=prior['lead_id'],status='received'),201
         if d.get('consent_health') is not True or d.get('consent_version')!=consent_version():
             abort(400,description='Please review and accept the current health-information notice.')
         if d.get('adult_or_guardian') is not True:abort(400,description='An adult patient or a parent/legal guardian must submit this request.')
@@ -178,11 +195,20 @@ def create_app(overrides=None):
         if route.get('urgent') is True:abort(400,description='Please seek local urgent care rather than submit an overseas care request.')
         _,cat=catalog();result=match_candidates(route,cat)
         cleaned.update(needs=needs,city=d['city'],routing=route,consent_version=consent_version(),consent_health=True,
+            preferred_language=language,
             consent_at=datetime.now(timezone.utc).isoformat(),adult_or_guardian=True,
             service_fee_at_submission=cat['service_config']['service_fee'],currency='USD',medical_and_travel_excluded=True,
             candidate_hospital_ids=[x['hospital']['id'] for x in result['candidates']],assigned_to='',notes='')
         ident='CCW-'+secrets.token_hex(6).upper();now=time.time()
-        db().execute('INSERT INTO leads(id,created,updated,status,body) VALUES(?,?,?,?,?)',(ident,now,now,'new',encrypt(cleaned)));db().commit()
+        try:
+            db().execute('INSERT INTO leads(id,created,updated,status,body) VALUES(?,?,?,?,?)',(ident,now,now,'new',encrypt(cleaned)))
+            if request_key:db().execute('INSERT INTO inquiry_requests VALUES(?,?,?)',(request_key,ident,body_hash))
+            db().commit()
+        except sqlite3.IntegrityError:
+            db().rollback()
+            prior=db().execute('SELECT lead_id,body_hash FROM inquiry_requests WHERE request_key=?',(request_key,)).fetchone()
+            if not prior or not secrets.compare_digest(prior['body_hash'],body_hash):abort(409,description='Request ID was already used for different information')
+            return jsonify(id=prior['lead_id'],status='received'),201
         audit('inquiry_created',ident)
         return jsonify(id=ident,status='received'),201
 
@@ -269,7 +295,12 @@ def create_app(overrides=None):
         if not isinstance(d.get('retention_days'),int) or not 1<=d['retention_days']<=365:raise ValueError('Retention must be 1–365 days')
         if not isinstance(d.get('intake_enabled'),bool):raise ValueError('Intake setting must be boolean')
         s.update(retention_days=d['retention_days'],intake_enabled=d['intake_enabled'])
-        db().execute('UPDATE settings SET body=? WHERE id=1',(json.dumps(s),));db().commit();audit('settings_updated');return jsonify(ok=True)
+        if 'catalog' in d:
+            validate_catalog(d['catalog'])
+            cur=db().execute('UPDATE catalog SET body=?,version=version+1 WHERE id=1 AND version=?',
+                (json.dumps(d['catalog'],ensure_ascii=False),d.get('catalog_version')))
+            if cur.rowcount!=1:db().rollback();abort(409,description='Directory changed in another window. Reload before editing.')
+        db().execute('UPDATE settings SET body=? WHERE id=1',(json.dumps(s),));db().commit();audit('settings_updated');return jsonify(ok=True,version=catalog()[0])
     @app.get('/api/admin/audit')
     @auth
     def audits():return jsonify(items=[dict(r) for r in db().execute('SELECT * FROM audits ORDER BY id DESC LIMIT 300')])
