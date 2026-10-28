@@ -55,6 +55,11 @@ def validate_catalog(d):
                 if not isinstance(x.get('specialty_keys'),list) or not set(x['specialty_keys'])<=set(d['specialties']):raise ValueError('Invalid hospital specialty keys')
                 u=urlparse(x.get('website',''))
                 if u.scheme not in ('http','https') or not u.netloc:raise ValueError('Invalid hospital website')
+                if x.get('hospital_grade')=='tertiary_a':
+                    if not x.get('grade_source_ids') or not set(x['grade_source_ids'])<=set(x['source_ids']):
+                        raise ValueError('Grade A hospitals require an attached official grade source')
+                    date.fromisoformat(x.get('grade_verified_on',''))
+                    if x['grade_verified_on']>date.today().isoformat():raise ValueError('Grade verification date cannot be in the future')
             if group=='departments' and x.get('hospital_id') not in hs: raise ValueError('Department hospital is missing')
             if group=='departments' and x.get('specialty_key') not in d['specialties']:raise ValueError('Department specialty is missing')
             if group=='experts' and (x.get('department_id') not in ds or not set(x.get('topic_keys',[]))<=topics):
@@ -62,6 +67,9 @@ def validate_catalog(d):
     f=d['service_config']
     if f.get('currency')!='USD' or not isinstance(f.get('service_fee'),(int,float)) or not 0<f['service_fee']<=1000000:
         raise ValueError('Invalid USD service fee')
+    lower=f.get('service_fee_min',f['service_fee'])
+    if not isinstance(lower,(int,float)) or isinstance(lower,bool) or not 0<lower<=f['service_fee']:
+        raise ValueError('Service fee minimum must be positive and no greater than the maximum')
     if f.get('price_type')!='service_fee_only' or f.get('medical_cost_included') or f.get('travel_cost_included'):
         raise ValueError('Medical and travel costs must remain separate from the service fee')
     if not re.fullmatch(r'[^\s@]+@[^\s@]+\.[^\s@]+',f.get('contact_email','')): raise ValueError('Invalid contact email')

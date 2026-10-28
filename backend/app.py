@@ -17,9 +17,10 @@ from werkzeug.security import check_password_hash,generate_password_hash
 from werkzeug.exceptions import HTTPException
 from werkzeug.middleware.proxy_fix import ProxyFix
 from .catalog import public_catalog,validate_catalog,match_candidates
+from .operations import empty_coordination,validate_coordination
 
 ROOT=Path(__file__).resolve().parents[1]
-STATUSES=('new','contacted','awaiting_materials','awaiting_hospital_confirmation','closed','archived')
+STATUSES=('new','contacted','awaiting_materials','awaiting_hospital_confirmation','appointment_confirmed','in_treatment','follow_up','closed','archived')
 CONSENT_VERSION='2026-10-26-v1'
 LANGUAGES=('zh','en','fr','ja','ko','hi','th','id')
 
@@ -74,6 +75,27 @@ def create_app(overrides=None):
         for group in ('hospitals','departments','experts'):
             for x in seed[group]: x['published']=True
         db().execute('INSERT OR IGNORE INTO catalog VALUES(1,1,?)',(json.dumps(seed),))
+        # Add the fee range and verified grade metadata without replacing operational edits.
+        stored=db().execute('SELECT version,body FROM catalog WHERE id=1').fetchone()
+        current=json.loads(stored['body']);changed=False
+        if 'service_fee_min' not in current['service_config']:
+            maximum=current['service_config']['service_fee']
+            current['service_config']['service_fee_min']=1000 if maximum==10000 else maximum
+            changed=True
+        seed_hospitals={h['id']:h for h in seed['hospitals']}
+        source_ids={s['id'] for s in current['sources']}
+        seed_sources={s['id']:s for s in seed['sources']}
+        for hospital in current['hospitals']:
+            original=seed_hospitals.get(hospital['id'])
+            if 'hospital_grade' not in hospital and original and original.get('hospital_grade'):
+                for key in ('hospital_grade','grade_source_ids','grade_verified_on'):hospital[key]=original[key]
+                hospital['source_ids']=list(dict.fromkeys(hospital['source_ids']+original['grade_source_ids']))
+                for sid in original['grade_source_ids']:
+                    if sid not in source_ids:current['sources'].append(seed_sources[sid]);source_ids.add(sid)
+                changed=True
+        if changed:
+            validate_catalog(current)
+            db().execute('UPDATE catalog SET version=version+1,body=? WHERE id=1',(json.dumps(current,ensure_ascii=False),))
         settings=dict(service_scope='Service scope, delivery period and accompaniment days will be agreed in writing before payment.',
             cancellation_policy='Cancellation and refund terms will be provided in the individual service agreement before payment.',
             operator_name='Avenlio Care',retention_days=90,intake_enabled=app.config['INTAKE_ENABLED'])
@@ -203,7 +225,8 @@ def create_app(overrides=None):
             preferred_language=language,
             consent_at=datetime.now(timezone.utc).isoformat(),adult_or_guardian=True,
             service_fee_at_submission=cat['service_config']['service_fee'],currency='USD',medical_and_travel_excluded=True,
-            candidate_hospital_ids=[x['hospital']['id'] for x in result['candidates']],assigned_to='',notes='')
+            service_fee_min_at_submission=cat['service_config'].get('service_fee_min',cat['service_config']['service_fee']),
+            candidate_hospital_ids=[x['hospital']['id'] for x in result['candidates']],assigned_to='',notes='',coordination=empty_coordination())
         ident='CCW-'+secrets.token_hex(6).upper();now=time.time()
         try:
             db().execute('INSERT INTO leads(id,created,updated,status,body) VALUES(?,?,?,?,?)',(ident,now,now,'new',encrypt(cleaned)))
@@ -274,6 +297,11 @@ def create_app(overrides=None):
         if not r:abort(404)
         if d.get('status') not in STATUSES:raise ValueError('Invalid inquiry status')
         x=decrypt(r['body'])
+        if 'coordination' in d:
+            _,current_catalog=catalog()
+            x['coordination']=validate_coordination(d['coordination'],current_catalog,x.get('coordination'))
+        if d['status']=='appointment_confirmed' and x.get('coordination',{}).get('hospital_state')!='confirmed':
+            raise ValueError('Appointment-confirmed status requires documented hospital confirmation')
         for k,maxlen in [('assigned_to',120),('notes',12000)]:
             if not isinstance(d.get(k,''),str) or len(d.get(k,''))>maxlen:raise ValueError('Invalid '+k)
             x[k]=d.get(k,'').strip()
