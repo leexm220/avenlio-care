@@ -153,6 +153,7 @@ def test_pause_settings_fee_snapshot_and_password_revoke(env):
     base=c.get('/api/admin/catalog').json;d=base['catalog'];d['service_config']['service_fee']=12000
     assert c.put('/api/admin/catalog',json={'catalog':d,'version':base['version']},headers=h).status_code==200
     assert c.get('/api/admin/inquiries').json['items'][0]['body']['service_fee_at_submission']==10000
+    assert c.get('/api/admin/inquiries').json['items'][0]['body']['service_fee_min_at_submission']==1000
     s=c.get('/api/admin/settings').json;s['intake_enabled']=False
     assert c.put('/api/admin/settings',json=s,headers=h).status_code==200
     assert c.post('/api/inquiries',json=inquiry(c)).status_code==503
@@ -205,3 +206,69 @@ def test_extend_taxonomy_without_fabricated_specialist(env):
     assert c.post('/api/match',json=dict(routing_basis='prior_diagnosis',topic_keys=['qa_uncovered_condition'])).json['candidates']==[]
     base=c.get('/api/admin/catalog').json;d=base['catalog'];d['topics'][-1]['specialty_key']='nonexistent'
     assert c.put('/api/admin/catalog',json={'catalog':d,'version':base['version']},headers=h).status_code==400
+
+def test_fee_range_validation_and_grade_sources(env):
+    _,c,_=env;headers=login(c)
+    base=c.get('/api/admin/catalog').json
+    d=copy.deepcopy(base['catalog']);d['service_config']['service_fee_min']=11000
+    assert c.put('/api/admin/catalog',json={'catalog':d,'version':base['version']},headers=headers).status_code==400
+    d=copy.deepcopy(base['catalog']);d['hospitals'][0]['grade_source_ids']=[]
+    assert c.put('/api/admin/catalog',json={'catalog':d,'version':base['version']},headers=headers).status_code==400
+    d=copy.deepcopy(base['catalog']);d['service_config']['service_fee_min']=2000;d['service_config']['service_fee']=8000
+    assert c.put('/api/admin/catalog',json={'catalog':d,'version':base['version']},headers=headers).status_code==200
+    assert c.post('/api/inquiries',json=inquiry(c)).status_code==201
+    saved=c.get('/api/admin/inquiries').json['items'][0]['body']
+    assert (saved['service_fee_min_at_submission'],saved['service_fee_at_submission'])==(2000,8000)
+
+def test_existing_catalog_migrates_range_without_replacing_edits(env):
+    app,_,folder=env
+    with sqlite3.connect(folder/'care.sqlite3') as con:
+        d=json.loads(con.execute('SELECT body FROM catalog').fetchone()[0])
+        d['service_config'].pop('service_fee_min')
+        d['hospitals'][0]['name_zh']='运营修改的医院名称'
+        for h in d['hospitals']:
+            for key in ('hospital_grade','grade_source_ids','grade_verified_on'):h.pop(key,None)
+        con.execute('UPDATE catalog SET body=?',(json.dumps(d),))
+    restored=create_app({key:app.config[key] for key in ('TESTING','DATA_DIR','DATA_KEY','ADMIN_HASH','TRUSTED_HOSTS','ADMIN_EMAIL')})
+    data=restored.test_client().get('/api/catalog').json
+    assert data['service_config']['service_fee_min']==1000
+    assert data['hospitals'][0]['name_zh']=='运营修改的医院名称'
+    assert data['hospitals'][0]['hospital_grade']=='tertiary_a'
+
+
+def test_coordination_validation_encryption_and_preservation(env):
+    from backend.operations import empty_coordination
+    _,c,p=env;headers=login(c);ident=c.post('/api/inquiries',json=inquiry(c)).json['id']
+    plan=empty_coordination();plan.update(next_action='Synthetic hospital confirmation',next_action_on='2026-11-01',hospital_state='confirmed',hospital_id='tj_eye',appointment_on='2026-11-06',appointment_time='09:30',campus='Synthetic campus only',confirmation_reference='Synthetic hospital reply reference',service_quote_usd=2000,quote_scope='Synthetic written scope reference');plan['tasks']['materials']=True
+    payload=dict(status='appointment_confirmed',assigned_to='QA',notes='Synthetic workflow',coordination=plan,version=1)
+    assert c.patch('/api/admin/inquiries/'+ident,json=payload,headers=headers).status_code==200
+    item=c.get('/api/admin/inquiries').json['items'][0]
+    assert item['body']['coordination']==plan
+    with sqlite3.connect(p/'care.sqlite3') as con:
+        raw=con.execute('SELECT body FROM leads WHERE id=?',(ident,)).fetchone()[0]
+        assert b'Synthetic campus only' not in raw and b'Synthetic written scope' not in raw
+    assert c.patch('/api/admin/inquiries/'+ident,json=payload,headers=headers).status_code==409
+    payload.pop('coordination');payload.update(version=item['version'],notes='Synthetic plain follow-up',status='follow_up')
+    assert c.patch('/api/admin/inquiries/'+ident,json=payload,headers=headers).status_code==200
+    assert c.get('/api/admin/inquiries').json['items'][0]['body']['coordination']==plan
+    directory=c.get('/api/admin/catalog').json
+    directory['catalog']['service_config']['service_fee']=1500
+    assert c.put('/api/admin/catalog',json=directory,headers=headers).status_code==200
+    current=c.get('/api/admin/inquiries').json['items'][0]
+    payload.update(version=current['version'],coordination=plan)
+    assert c.patch('/api/admin/inquiries/'+ident,json=payload,headers=headers).status_code==200
+    assert c.get('/api/admin/inquiries').json['items'][0]['body']['coordination']['service_quote_usd']==2000
+
+
+def test_invalid_coordination_cannot_mark_confirmed_or_save_quotes(env):
+    from backend.operations import empty_coordination
+    _,c,_=env;headers=login(c);ident=c.post('/api/inquiries',json=inquiry(c)).json['id']
+    def patch(plan,status='contacted'):
+        return c.patch('/api/admin/inquiries/'+ident,json=dict(status=status,assigned_to='',notes='',version=1,coordination=plan),headers=headers)
+    assert patch(empty_coordination(),'appointment_confirmed').status_code==400
+    bad=empty_coordination();bad['hospital_state']='confirmed';assert patch(bad).status_code==400
+    for key,value in [('hospital_id','unknown'),('next_action_on','2026-02-30'),('appointment_time','25:00'),('tasks',{'materials':'yes'}),('service_quote_usd',True),('service_quote_usd',500),('service_quote_usd',10001),('service_quote_usd',2000)]:
+        bad=empty_coordination();bad[key]=value
+        assert patch(bad).status_code==400,(key,value)
+    bad=empty_coordination();bad.update(service_quote_usd=2000,quote_scope='Synthetic scope')
+    assert patch(bad).status_code==200

@@ -1,7 +1,8 @@
 import assert from'node:assert/strict';
 import fs from'node:fs';
 import{matchCandidates}from'../web/assets/catalog-engine.js';
-import{esc,safeURL}from'../web/assets/shared.js';
+import{esc,safeURL,formatServiceFee}from'../web/assets/shared.js';
+import{listedCityHospitals}from'../web/assets/city-guide.js';
 const d=JSON.parse(fs.readFileSync(new URL('../web/assets/catalog.json',import.meta.url)));
 const lookup=r=>matchCandidates(r,d);
 assert.equal(lookup({symptoms:'headache'}).status,'manual_review');
@@ -13,7 +14,14 @@ assert.deepEqual(lookup({routing_basis:'clinician_recommended_specialty',special
 assert.equal(lookup({urgent:true}).status,'urgent_care');
 assert.equal(lookup({routing_basis:'prior_diagnosis',topic_keys:['ra','cataract']}).status,'manual_review');
 assert.equal(lookup({routing_basis:'prior_diagnosis',topic_keys:['ra']}).pricing.service_fee,10000);
+assert.equal(lookup({routing_basis:'prior_diagnosis',topic_keys:['ra']}).pricing.service_fee_min,1000);
+assert.equal(formatServiceFee(d.service_config),'$1,000–$10,000');
+assert.equal(formatServiceFee({service_fee:10000}),'$10,000');
+assert.equal(listedCityHospitals(d,'Beijing').length,5);
+assert.equal(listedCityHospitals(d,'Tianjin').length,4);
+const modified=structuredClone(d);modified.hospitals[0].published=false;modified.hospitals[1].grade_source_ids=['missing'];
+assert.equal(listedCityHospitals(modified,'Beijing').length,3);
 assert.equal(lookup({routing_basis:'prior_diagnosis',topic_keys:['ra']}).pricing.medical_estimate,null);
 assert.equal(safeURL('javascript:alert(1)'),'#');
 assert.equal(esc('<img src=x onerror="bad">'),'&lt;img src=x onerror=&quot;bad&quot;&gt;');
-console.log('12 frontend matching, price and output-safety assertions passed.');
+console.log('18 frontend matching, fee range, sourced city lists and output-safety assertions passed.');
