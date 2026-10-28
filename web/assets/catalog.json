@@ -179,6 +179,78 @@
       "published_on": null,
       "date_note": "URL path dates are not treated as publication/update dates.",
       "response_status": 200
+    },
+    {
+      "id": "pumch_grade",
+      "title": "北京协和医院 · 医院简介",
+      "url": "https://www.pumch.cn/research/gudie.html",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-28",
+      "published_on": null
+    },
+    {
+      "id": "pkufh_grade",
+      "title": "北京大学第一医院 · 院区与医院等级说明",
+      "url": "https://www.pkufh.com/Html/News/Articles/19204.html",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-28",
+      "published_on": null
+    },
+    {
+      "id": "pku3_grade",
+      "title": "北京大学第三医院 · 医院简介",
+      "url": "https://www.puh3.net.cn/yygk/yyjj.htm",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-28",
+      "published_on": null
+    },
+    {
+      "id": "tiantan_grade",
+      "title": "北京天坛医院 · 英文医院介绍",
+      "url": "https://www.bjtth.cn/Html/News/Columns/200275/1.html",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-28",
+      "published_on": null
+    },
+    {
+      "id": "cicams_grade",
+      "title": "中国医学科学院肿瘤医院 · 医院简介",
+      "url": "https://www.cicams.ac.cn/zyb/profile/57.html",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-28",
+      "published_on": null
+    },
+    {
+      "id": "tj_general_grade",
+      "title": "天津政务网 · 天津医科大学总医院",
+      "url": "https://www.tj.gov.cn/zwgk/ggqsydwxxgk/ylws/yy/202409/t20240923_6737587.html",
+      "publisher_type": "official_government",
+      "retrieved_on": "2026-10-28",
+      "published_on": null
+    },
+    {
+      "id": "tj_cancer_grade",
+      "title": "天津市肿瘤医院 · 医院介绍",
+      "url": "https://www.tjmuch.com/yygk/yyjj/index_yg.shtml",
+      "publisher_type": "official_hospital",
+      "retrieved_on": "2026-10-28",
+      "published_on": null
+    },
+    {
+      "id": "tj_first_grade",
+      "title": "天津政务网 · 天津市第一中心医院",
+      "url": "https://www.tj.gov.cn/zwgk/ggqsydwxxgk/ylws/yy/202409/t20240906_6719765.html",
+      "publisher_type": "official_government",
+      "retrieved_on": "2026-10-28",
+      "published_on": null
+    },
+    {
+      "id": "tj_eye_grade",
+      "title": "天津政务网 · 天津市眼科医院",
+      "url": "https://www.tj.gov.cn/zwgk/ggqsydwxxgk/ylws/yy/202409/t20240905_6719258.html",
+      "publisher_type": "official_government",
+      "retrieved_on": "2026-10-28",
+      "published_on": null
     }
   ],
   "hospitals": [
@@ -195,7 +267,8 @@
         "rheumatology"
       ],
       "source_ids": [
-        "pumch"
+        "pumch",
+        "pumch_grade"
       ],
       "verified_on": "2026-10-24",
       "verification_status": "official_public_information_read",
@@ -204,7 +277,12 @@
       "english_service_status": "unconfirmed",
       "partnership_status": "not_verified",
       "treatment_price_usd": null,
-      "campus_for_visit": null
+      "campus_for_visit": null,
+      "hospital_grade": "tertiary_a",
+      "grade_source_ids": [
+        "pumch_grade"
+      ],
+      "grade_verified_on": "2026-10-28"
     },
     {
       "id": "pkufh",
@@ -219,7 +297,8 @@
         "nephrology"
       ],
       "source_ids": [
-        "pkufh"
+        "pkufh",
+        "pkufh_grade"
       ],
       "verified_on": "2026-10-24",
       "verification_status": "official_public_information_read",
@@ -228,7 +307,12 @@
       "english_service_status": "unconfirmed",
       "partnership_status": "not_verified",
       "treatment_price_usd": null,
-      "campus_for_visit": null
+      "campus_for_visit": null,
+      "hospital_grade": "tertiary_a",
+      "grade_source_ids": [
+        "pkufh_grade"
+      ],
+      "grade_verified_on": "2026-10-28"
     },
     {
       "id": "pku3",
@@ -243,7 +327,8 @@
         "sports_medicine"
       ],
       "source_ids": [
-        "pku3"
+        "pku3",
+        "pku3_grade"
       ],
       "verified_on": "2026-10-24",
       "verification_status": "official_public_information_read",
@@ -252,7 +337,12 @@
       "english_service_status": "unconfirmed",
       "partnership_status": "not_verified",
       "treatment_price_usd": null,
-      "campus_for_visit": null
+      "campus_for_visit": null,
+      "hospital_grade": "tertiary_a",
+      "grade_source_ids": [
+        "pku3_grade"
+      ],
+      "grade_verified_on": "2026-10-28"
     },
     {
       "id": "tiantan",
@@ -267,7 +357,8 @@
         "neurosurgery"
       ],
       "source_ids": [
-        "tiantan"
+        "tiantan",
+        "tiantan_grade"
       ],
       "verified_on": "2026-10-24",
       "verification_status": "official_public_information_read",
@@ -276,7 +367,12 @@
       "english_service_status": "unconfirmed",
       "partnership_status": "not_verified",
       "treatment_price_usd": null,
-      "campus_for_visit": null
+      "campus_for_visit": null,
+      "hospital_grade": "tertiary_a",
+      "grade_source_ids": [
+        "tiantan_grade"
+      ],
+      "grade_verified_on": "2026-10-28"
     },
     {
       "id": "cicams",
@@ -291,7 +387,8 @@
         "oncology"
       ],
       "source_ids": [
-        "cicams"
+        "cicams",
+        "cicams_grade"
       ],
       "verified_on": "2026-10-24",
       "verification_status": "official_public_information_read",
@@ -300,7 +397,12 @@
       "english_service_status": "unconfirmed",
       "partnership_status": "not_verified",
       "treatment_price_usd": null,
-      "campus_for_visit": null
+      "campus_for_visit": null,
+      "hospital_grade": "tertiary_a",
+      "grade_source_ids": [
+        "cicams_grade"
+      ],
+      "grade_verified_on": "2026-10-28"
     },
     {
       "id": "tj_general",
@@ -315,7 +417,8 @@
         "endocrinology"
       ],
       "source_ids": [
-        "tj_general"
+        "tj_general",
+        "tj_general_grade"
       ],
       "verified_on": "2026-10-26",
       "verification_status": "historical_needs_update",
@@ -324,7 +427,12 @@
       "english_service_status": "unconfirmed",
       "partnership_status": "not_verified",
       "treatment_price_usd": null,
-      "campus_for_visit": null
+      "campus_for_visit": null,
+      "hospital_grade": "tertiary_a",
+      "grade_source_ids": [
+        "tj_general_grade"
+      ],
+      "grade_verified_on": "2026-10-28"
     },
     {
       "id": "tj_cancer",
@@ -339,7 +447,8 @@
         "oncology"
       ],
       "source_ids": [
-        "tj_cancer"
+        "tj_cancer",
+        "tj_cancer_grade"
       ],
       "verified_on": "2026-10-26",
       "verification_status": "official_public_information_read",
@@ -348,7 +457,12 @@
       "english_service_status": "unconfirmed",
       "partnership_status": "not_verified",
       "treatment_price_usd": null,
-      "campus_for_visit": null
+      "campus_for_visit": null,
+      "hospital_grade": "tertiary_a",
+      "grade_source_ids": [
+        "tj_cancer_grade"
+      ],
+      "grade_verified_on": "2026-10-28"
     },
     {
       "id": "tj_first",
@@ -365,7 +479,8 @@
       "source_ids": [
         "tj_first_dept",
         "tj_first_jing",
-        "tj_first_wan"
+        "tj_first_wan",
+        "tj_first_grade"
       ],
       "verified_on": "2026-10-26",
       "verification_status": "official_public_information_read",
@@ -374,7 +489,12 @@
       "english_service_status": "unconfirmed",
       "partnership_status": "not_verified",
       "treatment_price_usd": null,
-      "campus_for_visit": null
+      "campus_for_visit": null,
+      "hospital_grade": "tertiary_a",
+      "grade_source_ids": [
+        "tj_first_grade"
+      ],
+      "grade_verified_on": "2026-10-28"
     },
     {
       "id": "tj_eye",
@@ -390,7 +510,8 @@
       ],
       "source_ids": [
         "tj_eye_dept",
-        "tj_eye_cataract"
+        "tj_eye_cataract",
+        "tj_eye_grade"
       ],
       "verified_on": "2026-10-26",
       "verification_status": "official_public_information_read",
@@ -399,7 +520,12 @@
       "english_service_status": "unconfirmed",
       "partnership_status": "not_verified",
       "treatment_price_usd": null,
-      "campus_for_visit": null
+      "campus_for_visit": null,
+      "hospital_grade": "tertiary_a",
+      "grade_source_ids": [
+        "tj_eye_grade"
+      ],
+      "grade_verified_on": "2026-10-28"
     }
   ],
   "departments": [
@@ -852,7 +978,8 @@
     "total_estimate": null,
     "contact_email": "leexm220@gmail.com",
     "service_scope_status": "owner_to_confirm",
-    "online_payment_enabled": false
+    "online_payment_enabled": false,
+    "service_fee_min": 1000
   },
   "site_settings": {
     "retention_days": 90,

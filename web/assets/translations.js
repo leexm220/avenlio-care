@@ -1,7 +1,20 @@
+import {careRows} from './care-copy.js';
 // Human-authored interface copy. No external translation service receives user data.
 export const languages={zh:'中文',en:'English',fr:'Français',ja:'日本語',ko:'한국어',hi:'हिन्दी',th:'ไทย',id:'Bahasa Indonesia'};
 const locales=['en','zh','fr','ja','ko','hi','th','id'];
 const rows=`
+searchButton|Search hospitals|查询医院|Rechercher|病院を検索|병원 검색|अस्पताल खोजें|ค้นหาโรงพยาบาล|Cari rumah sakit
+mapAlt|Map of China locating Beijing and Tianjin in the north|中国地图：北京与天津位于中国北部|Carte de Chine situant Pékin et Tianjin au nord|中国北部に位置する北京と天津の案内図|중국 북부의 베이징과 톈진 위치 지도|चीन के उत्तर में बीजिंग और तियानजिन का नक्शा|แผนที่จีนแสดงตำแหน่งปักกิ่งและเทียนจินทางตอนเหนือ|Peta Tiongkok dengan lokasi Beijing dan Tianjin di utara
+mapHint|Select a city on the map or below to see its hospital list.|点击地图标记或下方城市，查看该城市的医院列表。|Choisissez une ville sur la carte ou ci-dessous pour voir ses hôpitaux.|地図のマーカーまたは下の都市名から病院一覧へ。|지도 표시나 아래 도시를 선택하면 병원 목록이 열립니다.|अस्पताल सूची के लिए नक्शे पर या नीचे शहर चुनें।|เลือกเมืองบนแผนที่หรือด้านล่างเพื่อดูรายชื่อโรงพยาบาล|Pilih kota di peta atau di bawah untuk melihat daftar rumah sakitnya.
+mapSource|Map data: DataV GeoAtlas|地图数据：DataV GeoAtlas|Carte : DataV GeoAtlas|地図データ：DataV GeoAtlas|지도 데이터: DataV GeoAtlas|नक्शा डेटा: DataV GeoAtlas|ข้อมูลแผนที่: DataV GeoAtlas|Data peta: DataV GeoAtlas
+viewCityHospitals|View hospitals in {city}|查看{city}医院列表|Voir les hôpitaux de {city}|{city}の病院一覧|{city} 병원 목록 보기|{city} के अस्पताल देखें|ดูโรงพยาบาลใน{city}|Lihat rumah sakit di {city}
+breadcrumb|You are here|当前位置|Vous êtes ici|現在のページ|현재 위치|वर्तमान पृष्ठ|ตำแหน่งปัจจุบัน|Lokasi halaman
+cityDirectory|CITY HOSPITAL DIRECTORY|城市医院目录|HÔPITAUX PAR VILLE|都市別病院一覧|도시별 병원 목록|शहर की अस्पताल सूची|รายชื่อโรงพยาบาลตามเมือง|DIREKTORI RUMAH SAKIT KOTA
+cityHospitalTitle|{city}: tertiary Grade A hospitals|{city}三甲医院列表|{city} : hôpitaux tertiaires de classe A|{city}の三甲病院一覧|{city} 3급 A등급 병원 목록|{city}: तृतीयक ग्रेड A अस्पताल|{city}: โรงพยาบาลตติยภูมิระดับ A|{city}: rumah sakit tersier kelas A
+cityHospitalIntro|An initial selection with official grade sources. This is not a complete city directory or a ranking.|首批收录、附官方等级依据；并非全市完整名录，顺序不代表排名。|Première sélection avec sources officielles du classement administratif ; liste non exhaustive, sans ordre de qualité.|公式の等級情報を確認した初期収録リストです。市内の全病院や順位を示すものではありません。|공식 등급 출처를 확인한 초기 수록 목록입니다. 전체 병원 명단이나 순위가 아닙니다.|आधिकारिक ग्रेड स्रोतों के साथ शुरुआती सूची। यह शहर की पूरी सूची या रैंकिंग नहीं है।|รายชื่อชุดแรกพร้อมแหล่งข้อมูลระดับโรงพยาบาลจากทางการ ไม่ใช่รายชื่อทั้งหมดหรือการจัดอันดับ|Pilihan awal dengan sumber resmi untuk kelas rumah sakit. Bukan daftar lengkap kota atau peringkat.
+gradeA|Tertiary Grade A|三级甲等|Tertiaire, classe A|三級甲等（三甲）|3급 A등급|तृतीयक ग्रेड A|ตติยภูมิระดับ A|Tersier kelas A
+gradeSource|Official grade source|等级依据|Source officielle du niveau|等級の公式出典|공식 등급 출처|आधिकारिक ग्रेड स्रोत|แหล่งข้อมูลระดับจากทางการ|Sumber resmi kelas
+hospitalWebsite|Hospital website|医院官网|Site de l'hôpital|病院公式サイト|병원 공식 사이트|अस्पताल की वेबसाइट|เว็บไซต์โรงพยาบาล|Situs rumah sakit
 brandName|Avenlio Care|安诺医伴|Avenlio Care|Avenlio Care|Avenlio Care|Avenlio Care|Avenlio Care|Avenlio Care
 brandDescriptor|Patient Coordination|就医协调|Coordination des soins|受診サポート|진료 지원|रोगी समन्वय|ประสานงานผู้ป่วย|Koordinasi pasien
 brandLegalName|Avenlio Care|Avenlio Care（安诺医伴）|Avenlio Care|Avenlio Care|Avenlio Care|Avenlio Care|Avenlio Care|Avenlio Care
@@ -37,7 +50,21 @@ directoryEyebrow|A SOURCED STARTING POINT|有据可查的起点|DES INFORMATIONS
 directoryTitle|Find your place to start.|找到适合了解的方向。|Trouvez par où commencer.|受診の手がかりを見つける。|어디서 시작할지 살펴보세요.|शुरुआत कहाँ से करें, जानें।|ค้นหาจุดเริ่มต้นของคุณ|Temukan titik awal Anda.
 directoryBody|An initial directory with official sources and verification dates. Coverage is growing.|首批目录附官方来源与核查日期，覆盖范围将持续扩充。|Un premier répertoire avec sources officielles et dates de vérification. Il sera enrichi.|公式出典と確認日を記載した初期版です。対象範囲を順次拡大します。|공식 출처와 확인일이 있는 초기 목록입니다. 범위를 확대하고 있습니다.|आधिकारिक स्रोतों और जाँच तिथियों वाली शुरुआती सूची। दायरा बढ़ रहा है।|รายชื่อเบื้องต้นพร้อมแหล่งข้อมูลทางการและวันที่ตรวจสอบ กำลังเพิ่มข้อมูลต่อเนื่อง|Direktori awal dengan sumber resmi dan tanggal pemeriksaan. Cakupan terus bertambah.
 search|Search|搜索|Rechercher|検索|검색|खोजें|ค้นหา|Cari
-searchHint|Hospital name or specialty|医院名称或专业方向|Nom de l'hôpital ou spécialité|病院名または診療分野|병원명 또는 진료 분야|अस्पताल का नाम या विशेषज्ञता|ชื่อโรงพยาบาลหรือสาขาเฉพาะทาง|Nama rumah sakit atau spesialisasi
+searchHint|Name, abbreviation, department or condition|医院名、简称、科室或诊疗关键词|Nom, sigle, service ou maladie|病院名・略称・診療科・疾患名|병원명, 약칭, 진료과, 질환명|नाम, संक्षिप्त नाम, विभाग या रोग|ชื่อ ชื่อย่อ แผนก หรือโรค|Nama, singkatan, departemen atau kondisi
+searchHelp|Search Chinese or English names in any language. Separate keywords with spaces, e.g. Tianjin eye. This searches public profiles, not medical suitability.|支持中英文名称、简称、科室、专家及已收录诊疗词；多个词用空格分隔，如“天津 白内障”。结果仅表示资料提及，不代表临床推荐。|Noms chinois ou anglais acceptés dans toutes les langues. Séparez les mots par des espaces, par ex. Tianjin eye. Recherche dans les fiches publiques, sans évaluation médicale.|表示言語にかかわらず中国語・英語の名称を検索できます。複数の語は空白で区切ります（例：天津 白内障）。公開情報の検索であり、医学的な適合性の判断ではありません。|표시 언어와 관계없이 중국어·영어 이름을 검색할 수 있습니다. 여러 단어는 공백으로 구분하세요(예: Tianjin eye). 공개 자료 검색이며 진료 적합성 판단이 아닙니다.|किसी भी भाषा में चीनी या अंग्रेज़ी नाम खोजें। शब्दों के बीच स्पेस दें, जैसे Tianjin eye। यह सार्वजनिक परिचय खोजता है, चिकित्सा उपयुक्तता नहीं।|ค้นหาชื่อภาษาจีนหรืออังกฤษได้ทุกภาษา เว้นวรรคระหว่างคำ เช่น Tianjin eye เป็นการค้นข้อมูลสาธารณะ ไม่ใช่การประเมินความเหมาะสมทางการแพทย์|Nama Mandarin atau Inggris dapat dicari dalam semua bahasa. Pisahkan kata dengan spasi, misalnya Tianjin eye. Ini pencarian profil publik, bukan penilaian kesesuaian medis.
+searchCoverage|Currently searching {n} listed hospitals in Beijing and Tianjin; this is not a complete hospital directory.|当前检索北京、天津已收录的 {n} 家医院，并非两市全部医院。|Recherche parmi {n} hôpitaux répertoriés à Pékin et Tianjin ; liste non exhaustive.|現在の検索対象は北京・天津で掲載済みの{n}施設です。全病院を網羅していません。|현재 베이징·톈진에 수록된 병원 {n}곳을 검색합니다. 전체 병원 목록은 아닙니다.|अभी बीजिंग और तियानजिन के {n} सूचीबद्ध अस्पतालों में खोज होती है; यह पूरी सूची नहीं है।|ค้นหาในโรงพยาบาลที่มีข้อมูล {n} แห่งในปักกิ่งและเทียนจิน ไม่ใช่รายชื่อทั้งหมด|Saat ini mencari {n} rumah sakit terdaftar di Beijing dan Tianjin; ini bukan daftar lengkap.
+searchExamples|Try:|试试：|Essayez :|検索例：|검색 예:|आज़माएँ:|ลอง:|Coba:
+searchMatch|Matched {kind}: {label}|匹配{kind}：{label}|Correspondance — {kind} : {label}|一致した{kind}：{label}|일치한 {kind}: {label}|मेल {kind}: {label}|ตรงกับ{kind}: {label}|Cocok pada {kind}: {label}
+match_name|hospital name|医院名称|nom de l'hôpital|病院名|병원명|अस्पताल का नाम|ชื่อโรงพยาบาล|nama rumah sakit
+match_alias|abbreviation|医院简称|abréviation|略称|약칭|संक्षिप्त नाम|ชื่อย่อ|singkatan
+match_city|city|城市|ville|都市|도시|शहर|เมือง|kota
+match_specialty|specialty|专业方向|spécialité|診療分野|진료 분야|विशेषज्ञता|สาขา|spesialisasi
+match_department|department|科室|service|診療科|진료과|विभाग|แผนก|departemen
+match_expert|specialist name|专家姓名|nom du spécialiste|専門医名|전문의 이름|विशेषज्ञ का नाम|ชื่อแพทย์|nama spesialis
+match_topic|listed condition|已收录诊疗词|maladie répertoriée|掲載疾患名|수록 질환명|सूचीबद्ध रोग|โรคที่มีข้อมูล|kondisi terdaftar
+match_profile|public profile|公开介绍|fiche publique|公開紹介|공개 소개|सार्वजनिक परिचय|ข้อมูลสาธารณะ|profil publik
+filteredOut|{n} result(s) are hidden by the city or specialty filters.|有 {n} 家匹配医院被当前城市或专业筛选排除了。|{n} résultat(s) masqué(s) par les filtres de ville ou de spécialité.|都市または分野の絞り込みで{n}件が表示されていません。|도시 또는 진료 분야 필터로 결과 {n}곳이 숨겨져 있습니다.|शहर या विशेषज्ञता फ़िल्टर के कारण {n} परिणाम छिपे हैं।|ตัวกรองเมืองหรือสาขาซ่อนผลลัพธ์ {n} แห่ง|{n} hasil tersembunyi oleh filter kota atau spesialisasi.
+searchAll|Search all cities and specialties|保留关键词，搜索所有城市与专业|Chercher dans toutes les villes et spécialités|キーワードを保ち、全都市・分野で検索|검색어를 유지하고 모든 도시·분야 검색|सभी शहरों और विशेषज्ञताओं में खोजें|ค้นหาทุกเมืองและสาขาโดยใช้คำเดิม|Cari di semua kota dan spesialisasi
 city|City|城市|Ville|都市|도시|शहर|เมือง|Kota
 specialty|Specialty|专业方向|Spécialité|診療分野|진료 분야|विशेषज्ञता|สาขาเฉพาะทาง|Spesialisasi
 allCities|All cities|所有城市|Toutes les villes|すべての都市|모든 도시|सभी शहर|ทุกเมือง|Semua kota
@@ -92,8 +119,8 @@ optionsButton|Explore care options ↗|查看就医选项 ↗|Voir les possibili
 working|Please wait…|请稍候…|Veuillez patienter…|お待ちください…|잠시 기다려 주세요…|कृपया प्रतीक्षा करें…|โปรดรอสักครู่…|Mohon tunggu…
 matchingHow|HOW OPTIONS ARE FOUND|如何检索候选|COMMENT LES OPTIONS SONT TROUVÉES|候補の選び方|선택지를 찾는 방법|विकल्प कैसे खोजे जाते हैं|วิธีค้นหาทางเลือก|CARA MENEMUKAN PILIHAN
 matchingBody|We use only an existing clinician diagnosis or a clinician-recommended specialty to look up public profiles. Symptoms alone go to human review. Clinical suitability and appointments require hospital confirmation.|仅依据已有医生诊断或医生建议方向检索公开资料。只有症状时转人工。临床适合性及预约由医院确认。|Nous recherchons des profils publics à partir d'un diagnostic établi ou d'une spécialité conseillée. Les symptômes seuls nécessitent un examen humain. L'hôpital confirme la pertinence clinique et les rendez-vous.|既存の医師の診断または推奨分野だけをもとに公開情報を検索します。症状のみの場合は担当者が確認。医学的適合性と予約は病院が判断します。|기존 의사 진단이나 권장 분야로만 공개 정보를 검색합니다. 증상만 있으면 담당자가 검토하며 적합성과 예약은 병원이 확인합니다.|केवल डॉक्टर के मौजूदा निदान या सुझाई विशेषज्ञता से सार्वजनिक परिचय खोजे जाते हैं। केवल लक्षण हों तो मानवीय समीक्षा होगी। उपयुक्तता और अपॉइंटमेंट अस्पताल तय करता है।|ใช้เฉพาะการวินิจฉัยหรือสาขาที่แพทย์แนะนำเพื่อค้นหาข้อมูล หากมีเพียงอาการจะให้เจ้าหน้าที่ตรวจสอบ โรงพยาบาลเป็นผู้ยืนยันความเหมาะสมและการนัดหมาย|Kami mencari profil publik berdasarkan diagnosis atau spesialisasi dari dokter. Gejala saja ditinjau petugas. Kesesuaian klinis dan janji temu dikonfirmasi rumah sakit.
-serviceFee|Platform service fee|平台服务费|Frais de service|サービス料金|플랫폼 서비스 요금|प्लेटफ़ॉर्म सेवा शुल्क|ค่าบริการแพลตฟอร์ม|Biaya layanan platform
-feeOnly|Service fee only. Scope is agreed in writing before payment.|仅为服务费，服务范围在付款前书面约定。|Frais de service uniquement. Le périmètre est convenu par écrit avant paiement.|サービス料金のみです。支払い前に範囲を書面で合意します。|서비스 요금만 포함합니다. 결제 전 범위를 서면으로 합의합니다.|केवल सेवा शुल्क। भुगतान से पहले दायरा लिखित रूप में तय होगा।|เฉพาะค่าบริการ ขอบเขตจะตกลงเป็นลายลักษณ์อักษรก่อนชำระเงิน|Hanya biaya layanan. Cakupan disepakati tertulis sebelum pembayaran.
+serviceFee|Platform service fee range|平台服务费区间|Fourchette des frais de service|サービス料金の目安|플랫폼 서비스 요금 범위|प्लेटफ़ॉर्म सेवा शुल्क सीमा|ช่วงค่าบริการแพลตฟอร์ม|Kisaran biaya layanan platform
+feeOnly|Service fee only. The final quote depends on the agreed scope and is confirmed in writing before payment.|仅为服务费区间，按具体服务范围报价，付款前书面确认。|Frais de service uniquement. Le devis final dépend du périmètre convenu et est confirmé par écrit avant paiement.|サービス料金のみです。具体的な支援範囲に応じて見積もり、支払い前に書面で確認します。|서비스 요금만 해당합니다. 구체적인 서비스 범위에 따라 견적을 내고 결제 전에 서면으로 확인합니다.|केवल सेवा शुल्क। अंतिम राशि तय सेवा दायरे पर निर्भर है और भुगतान से पहले लिखित पुष्टि की जाएगी।|เฉพาะค่าบริการ ราคาสุดท้ายขึ้นอยู่กับขอบเขตที่ตกลงและยืนยันเป็นลายลักษณ์อักษรก่อนชำระเงิน|Hanya biaya layanan. Penawaran akhir bergantung pada cakupan yang disepakati dan dikonfirmasi tertulis sebelum pembayaran.
 medical|Medical treatment|医疗费用|Frais médicaux|医療費|의료비|चिकित्सा खर्च|ค่ารักษาพยาบาล|Biaya medis
 travel|Travel & accommodation|行程与住宿|Voyage et hébergement|渡航・宿泊費|여행 및 숙박|यात्रा और आवास|การเดินทางและที่พัก|Perjalanan dan akomodasi
 separate|Paid separately|患者另付|À régler séparément|患者様が別途負担|환자 별도 부담|अलग से देय|ผู้ป่วยชำระแยกต่างหาก|Dibayar terpisah oleh pasien
@@ -222,7 +249,7 @@ cataractCenter|Cataract Center|白内障中心|Centre de la cataracte|白内障�
 endoMetabolism|Endocrinology and Metabolism|内分泌代谢科|Endocrinologie et métabolisme|内分泌・代謝科|내분비대사과|अंतःस्रावी और चयापचय विभाग|ต่อมไร้ท่อและเมแทบอลิซึม|Endokrinologi dan Metabolisme
 `;
 export const messages=Object.fromEntries(locales.map(locale=>[locale,{}]));
-for(const row of rows.trim().split('\n')) {
+for(const row of (rows.trim()+'\n'+careRows.trim()).split('\n')) {
   const [key,...values]=row.split('|');
   if(values.length!==locales.length)throw new Error('Invalid translation row: '+key);
   locales.forEach((locale,index)=>messages[locale][key]=values[index]);
